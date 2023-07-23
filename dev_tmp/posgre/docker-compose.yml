@@ -1,0 +1,22 @@
+
+version: '3'
+volumes:                           # ※ホストOSで永続化
+    postgres_data:
+        driver: 'local'
+services:
+  postgres:
+    build:
+      context: ./postgres
+      dockerfile: Dockerfile
+    container_name: "postgres_db"
+    environment:
+      POSTGRES_PASSWORD: postgres  #スーパーユーザ(postgres)のパスワード
+      POSTGRES_USER: postgres    #ユーザアカウント
+      POSTGRES_DB: chat_dev          #DB名
+      TZ: "Asia/Tokyo"
+    ports:
+      - 5432:5432  #ホストOSの15432をコンテナ内の5432にマッピング
+    volumes:
+      - ./postgres/data:/var/lib/postgresql/data    # ※ホストOSで永続化
+      - ./postgres/sql:/docker-entrypoint-initdb.d
+

@@ -1,0 +1,4 @@
+
+ 1135  cp -r ../../TEMPLATE_EPD/* .
+ 1138  cp -r ../../TEMPLATE_EPD/.env  .
+
