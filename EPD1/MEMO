@@ -1,0 +1,66 @@
+
+https://qiita.com/koyo-miyamura/items/a609de2e9fadaf198243
+
+https://zenn.dev/tnka122/articles/abb6149f5a5f6c
+
+
+###
+
+cp EDP_TEMPLATE
+
+
+### create docker
+
+docker compose run --rm app mix --version
+docker compose run --rm db psql --version
+
+
+### create project
+
+docker compose run --rm app mix phx.new . --app myapp
+
+### setting project
+
+vim config/dev.exs
+
+##
+config :myapp, Myapp.Repo,
+  username: "postgres",
+  password: "postgres",
+  hostname: "db",    <=====
+  database: "myapp_dev",
+  stacktrace: true,
+  show_sensitive_data_on_connection_error: true,
+  pool_size: 10
+
+config :myapp, MyappWeb.Endpoint,
+  http: [ip: {0, 0, 0, 0}, port: 4000],   <====
+  check_origin: false,
+  code_reloader: true,
+  debug_errors: true,
+  secret_key_base: "54mt/cqXo1mLTktiWkWB8D2d5oErdTDWuZgDnV9SMx/FoogmC2YbtVE2k3GfM/sO",
+  watchers: [
+    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
+  ]
+##
+
+
+## db create
+
+docker-compose run --rm app mix ecto.create
+
+## docker start
+
+docker compose up -d
+
+## docker stop
+docker compose down
+
+
+http://127.0.0.1:4000/
+
+
+
+
+

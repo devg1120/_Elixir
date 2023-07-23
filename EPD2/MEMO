@@ -1,0 +1,22 @@
+
+https://qiita.com/koyo-miyamura/items/a609de2e9fadaf198243
+
+https://zenn.dev/tnka122/articles/abb6149f5a5f6c
+
+docker compose run --rm app mix --version
+docker compose run --rm db psql --version
+
+
+docker-compose run --rm app mix ecto.create
+
+docker compose up -d
+
+docker compose down
+
+
+http://127.0.0.1:4000/
+
+
+
+
+
