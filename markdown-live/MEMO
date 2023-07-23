@@ -1,0 +1,7 @@
+
+ 1154  mix deps.get
+ 1158  cd assets
+ 1160  npm i
+ 1161  cd ..
+ 1162  mix phx.server\n
+
